@@ -6,8 +6,9 @@ Vagrant.configure("2") do |config|
     v.vmx["numvcpus"] = "2"
   end
 
-  config.vm.synced_folder "../src/", "/vagrant/src", type: "rsync",
+  config.vm.synced_folder "src/", "/vagrant/src", type: "rsync",
   rsync__exclude: [".git/", "venv/", "*.pyc", "__pycache__/"]
+
   config.vm.network "forwarded_port", guest: 8000, host: 8088
 
   config.vm.provision "shell", path: "provision.sh"
